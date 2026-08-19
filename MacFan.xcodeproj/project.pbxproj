@@ -8,12 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		013F8BF005C549927D27074A /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92178FA47944BE29802F37D2 /* IOKit.framework */; };
+		03F16EE4562E66C9C4097BD8 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92178FA47944BE29802F37D2 /* IOKit.framework */; };
 		0AC2C1A0CAB31FFACBABF887 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C77C51CD94D267EB47FAEC3 /* CoreFoundation.framework */; };
 		167FA5AEA68A70B7012C1F09 /* ThermalServiceClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC04987C9253E373AEB6A88 /* ThermalServiceClient.swift */; };
+		20F09B92A04F2D0449EE6405 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92178FA47944BE29802F37D2 /* IOKit.framework */; };
 		2256236FC857C9E6A16A93CB /* libMacFanCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B85A74DBE1BBEC396529AC75 /* libMacFanCore.a */; };
 		3DFD2E9356DDE4636C99B65D /* ThermalServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D9DA37CDAFF86FB66090BA /* ThermalServiceProtocol.swift */; };
 		3E87B43B55D619AFA285D775 /* ThermalController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FAC3626A794698147257379 /* ThermalController.swift */; };
+		47C5D3051A29C8975555B380 /* libCSMC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E773FE6E294CDC03001CA637 /* libCSMC.a */; };
 		548CCE4DBE6C54F5CA524871 /* CSMC.c in Sources */ = {isa = PBXBuildFile; fileRef = 08E3D56FAF54330768BA43AA /* CSMC.c */; };
+		6ADF9A930AF5E8E959FDAA8F /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C77C51CD94D267EB47FAEC3 /* CoreFoundation.framework */; };
 		6B3F367E1C12E35CDDB57B0E /* module.modulemap in CopyFiles */ = {isa = PBXBuildFile; fileRef = D0AE7F3614499B0FB405F229 /* module.modulemap */; };
 		731AF1C1B3C320AEAE4350D2 /* libMacFanCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B85A74DBE1BBEC396529AC75 /* libMacFanCore.a */; };
 		78FA1639BC83763F8C4EAC79 /* SMCClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FD0D3FDEAED0A0E1A7C25C /* SMCClient.swift */; };
@@ -24,8 +28,10 @@
 		A2BDF00C606CB25282C5A8A6 /* CSMC.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1F2C6FBE47B885468CD67154 /* CSMC.h */; };
 		AD8760C3A4F296288F369DC0 /* ServiceManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 491279FB52C9F46E85323B4A /* ServiceManagement.framework */; };
 		ADD4832459807B3CCAA3706F /* FanCurve.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C558551444005E65E2EE4A /* FanCurve.swift */; };
+		CEA5BE16A8ECC44AB4877D9B /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C77C51CD94D267EB47FAEC3 /* CoreFoundation.framework */; };
 		D8F23F5BB5584B32608C06AE /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB984B270F68F2CD03F1C9D /* AppModel.swift */; };
 		DFCA322220B36EB62FB39F64 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD80D3C7DC1689495FA5DA97 /* DashboardView.swift */; };
+		E20898624C729561F93952A4 /* libCSMC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E773FE6E294CDC03001CA637 /* libCSMC.a */; };
 		EA9CCC9F4E3E5A3AC1905F5D /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82468267092AF7B5B05786C7 /* Models.swift */; };
 /* End PBXBuildFile section */
 
@@ -36,6 +42,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 170C8B6E3E5449B02CBF510B;
 			remoteInfo = MacFanHelper;
+		};
+		31A2CD0C806707D9BC75331E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5654300092F2A4CEA5D148E7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C7F88370B658527971FF5C64;
+			remoteInfo = CSMC;
 		};
 		34CD5134A78AA25372466ED4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -50,6 +63,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = BBFB496950E330EF83E32C86;
 			remoteInfo = MacFanCore;
+		};
+		8E136D3059894150986EF0A0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5654300092F2A4CEA5D148E7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C7F88370B658527971FF5C64;
+			remoteInfo = CSMC;
 		};
 		92C58B7A41C8D1344C29AE8D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -105,6 +125,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				731AF1C1B3C320AEAE4350D2 /* libMacFanCore.a in Frameworks */,
+				E20898624C729561F93952A4 /* libCSMC.a in Frameworks */,
+				6ADF9A930AF5E8E959FDAA8F /* CoreFoundation.framework in Frameworks */,
+				20F09B92A04F2D0449EE6405 /* IOKit.framework in Frameworks */,
 				9A44DAE5A50AB341F9CB9793 /* Security.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -123,6 +146,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				2256236FC857C9E6A16A93CB /* libMacFanCore.a in Frameworks */,
+				47C5D3051A29C8975555B380 /* libCSMC.a in Frameworks */,
+				CEA5BE16A8ECC44AB4877D9B /* CoreFoundation.framework in Frameworks */,
+				03F16EE4562E66C9C4097BD8 /* IOKit.framework in Frameworks */,
 				AD8760C3A4F296288F369DC0 /* ServiceManagement.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -236,6 +262,7 @@
 			);
 			dependencies = (
 				D369E45E8645900C3BBAE77E /* PBXTargetDependency */,
+				C098C1D790C6FFAF78350EC1 /* PBXTargetDependency */,
 			);
 			name = MacFanHelper;
 			packageProductDependencies = (
@@ -294,6 +321,7 @@
 			);
 			dependencies = (
 				022682A54E8D4D5FCD525C17 /* PBXTargetDependency */,
+				14478AE130AA020BA1B95FB9 /* PBXTargetDependency */,
 				8132D4901BF340D258FBD63B /* PBXTargetDependency */,
 			);
 			name = MacFan;
@@ -425,6 +453,11 @@
 			target = BBFB496950E330EF83E32C86 /* MacFanCore */;
 			targetProxy = 34CD5134A78AA25372466ED4 /* PBXContainerItemProxy */;
 		};
+		14478AE130AA020BA1B95FB9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C7F88370B658527971FF5C64 /* CSMC */;
+			targetProxy = 31A2CD0C806707D9BC75331E /* PBXContainerItemProxy */;
+		};
 		59C9BFA34DB179BC2D5D590D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = C7F88370B658527971FF5C64 /* CSMC */;
@@ -434,6 +467,11 @@
 			isa = PBXTargetDependency;
 			target = 170C8B6E3E5449B02CBF510B /* MacFanHelper */;
 			targetProxy = 2356EBD473F7B597F6D7AF23 /* PBXContainerItemProxy */;
+		};
+		C098C1D790C6FFAF78350EC1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C7F88370B658527971FF5C64 /* CSMC */;
+			targetProxy = 8E136D3059894150986EF0A0 /* PBXContainerItemProxy */;
 		};
 		D369E45E8645900C3BBAE77E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

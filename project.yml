@@ -59,6 +59,9 @@ targets:
         PRODUCT_BUNDLE_IDENTIFIER: com.evolte.MacFan.helper
     dependencies:
       - target: MacFanCore
+      - target: CSMC
+      - sdk: CoreFoundation.framework
+      - sdk: IOKit.framework
       - sdk: Security.framework
 
   MacFan:
@@ -84,8 +87,11 @@ targets:
         PRODUCT_NAME: MacFan
     dependencies:
       - target: MacFanCore
+      - target: CSMC
       - target: MacFanHelper
         embed: false
+      - sdk: CoreFoundation.framework
+      - sdk: IOKit.framework
       - sdk: ServiceManagement.framework
     postBuildScripts:
       - name: Embed privileged helper
