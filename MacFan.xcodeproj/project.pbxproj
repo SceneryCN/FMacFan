@@ -17,9 +17,9 @@
 		6B3F367E1C12E35CDDB57B0E /* module.modulemap in CopyFiles */ = {isa = PBXBuildFile; fileRef = D0AE7F3614499B0FB405F229 /* module.modulemap */; };
 		731AF1C1B3C320AEAE4350D2 /* libMacFanCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B85A74DBE1BBEC396529AC75 /* libMacFanCore.a */; };
 		78FA1639BC83763F8C4EAC79 /* SMCClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FD0D3FDEAED0A0E1A7C25C /* SMCClient.swift */; };
+		8C57C2F31C20DFC4C850E720 /* MacFanHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C80DF9290C1EA13D788B054 /* MacFanHelper.swift */; };
 		90AADA7C86556DC5ED2A47E4 /* ClientVerifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DE692C54BE0C1914CC60ED /* ClientVerifier.swift */; };
 		9566A95A2AFAD5276DA161C9 /* MacFanApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3522396AF04BEBFED9A9F47 /* MacFanApp.swift */; };
-		972807EE06D3F9689A3E0DB9 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D0B41E33A23BBB7A55E92D /* main.swift */; };
 		9A44DAE5A50AB341F9CB9793 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BFB52D41456190B5F1C2EA4 /* Security.framework */; };
 		A2BDF00C606CB25282C5A8A6 /* CSMC.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1F2C6FBE47B885468CD67154 /* CSMC.h */; };
 		AD8760C3A4F296288F369DC0 /* ServiceManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 491279FB52C9F46E85323B4A /* ServiceManagement.framework */; };
@@ -79,8 +79,8 @@
 		13C558551444005E65E2EE4A /* FanCurve.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FanCurve.swift; sourceTree = "<group>"; };
 		1BFB52D41456190B5F1C2EA4 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		1F2C6FBE47B885468CD67154 /* CSMC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSMC.h; sourceTree = "<group>"; };
-		35D0B41E33A23BBB7A55E92D /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		3C77C51CD94D267EB47FAEC3 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		3C80DF9290C1EA13D788B054 /* MacFanHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacFanHelper.swift; sourceTree = "<group>"; };
 		41DE692C54BE0C1914CC60ED /* ClientVerifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientVerifier.swift; sourceTree = "<group>"; };
 		491279FB52C9F46E85323B4A /* ServiceManagement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ServiceManagement.framework; path = System/Library/Frameworks/ServiceManagement.framework; sourceTree = SDKROOT; };
 		5CC04987C9253E373AEB6A88 /* ThermalServiceClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermalServiceClient.swift; sourceTree = "<group>"; };
@@ -205,7 +205,7 @@
 			isa = PBXGroup;
 			children = (
 				41DE692C54BE0C1914CC60ED /* ClientVerifier.swift */,
-				35D0B41E33A23BBB7A55E92D /* main.swift */,
+				3C80DF9290C1EA13D788B054 /* MacFanHelper.swift */,
 			);
 			path = MacFanHelper;
 			sourceTree = "<group>";
@@ -413,7 +413,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				90AADA7C86556DC5ED2A47E4 /* ClientVerifier.swift in Sources */,
-				972807EE06D3F9689A3E0DB9 /* main.swift in Sources */,
+				8C57C2F31C20DFC4C850E720 /* MacFanHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
