@@ -85,11 +85,11 @@
 		491279FB52C9F46E85323B4A /* ServiceManagement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ServiceManagement.framework; path = System/Library/Frameworks/ServiceManagement.framework; sourceTree = SDKROOT; };
 		5CC04987C9253E373AEB6A88 /* ThermalServiceClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermalServiceClient.swift; sourceTree = "<group>"; };
 		64FD0D3FDEAED0A0E1A7C25C /* SMCClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMCClient.swift; sourceTree = "<group>"; };
-		7DA793D2D697484C8A410F6B /* MacFanHelper */ = {isa = PBXFileReference; includeInIndex = 0; path = MacFanHelper; sourceTree = BUILT_PRODUCTS_DIR; };
 		7FAC3626A794698147257379 /* ThermalController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermalController.swift; sourceTree = "<group>"; };
 		82468267092AF7B5B05786C7 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		85D9DA37CDAFF86FB66090BA /* ThermalServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermalServiceProtocol.swift; sourceTree = "<group>"; };
 		92178FA47944BE29802F37D2 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
+		B3BD1782DDCDE3179580DD62 /* macfan-helper */ = {isa = PBXFileReference; includeInIndex = 0; path = "macfan-helper"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B85A74DBE1BBEC396529AC75 /* libMacFanCore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMacFanCore.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD80D3C7DC1689495FA5DA97 /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
 		D0AE7F3614499B0FB405F229 /* module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
@@ -146,8 +146,8 @@
 			children = (
 				E773FE6E294CDC03001CA637 /* libCSMC.a */,
 				B85A74DBE1BBEC396529AC75 /* libMacFanCore.a */,
+				B3BD1782DDCDE3179580DD62 /* macfan-helper */,
 				E0FF5B4F50A19ADC4D81816B /* MacFan.app */,
-				7DA793D2D697484C8A410F6B /* MacFanHelper */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -241,7 +241,7 @@
 			packageProductDependencies = (
 			);
 			productName = MacFanHelper;
-			productReference = 7DA793D2D697484C8A410F6B /* MacFanHelper */;
+			productReference = B3BD1782DDCDE3179580DD62 /* macfan-helper */;
 			productType = "com.apple.product-type.tool";
 		};
 		BBFB496950E330EF83E32C86 /* MacFanCore */ = {
@@ -356,7 +356,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -eu\nHELPER_DIR=\"${TARGET_BUILD_DIR}/${CONTENTS_FOLDER_PATH}/Library/LaunchServices\"\nPLIST_DIR=\"${TARGET_BUILD_DIR}/${CONTENTS_FOLDER_PATH}/Library/LaunchDaemons\"\nmkdir -p \"${HELPER_DIR}\" \"${PLIST_DIR}\"\nditto \"${BUILT_PRODUCTS_DIR}/macfan-helper\" \"${HELPER_DIR}/macfan-helper\"\nditto \"${SRCROOT}/Config/com.evolte.MacFan.helper.plist\" \"${PLIST_DIR}/com.evolte.MacFan.helper.plist\"\nSIGNING_IDENTITY=\"${EXPANDED_CODE_SIGN_IDENTITY:--}\"\ncodesign --force --sign \"${SIGNING_IDENTITY}\" --options runtime \"${HELPER_DIR}/macfan-helper\"\n";
+			shellScript = "set -eu\nHELPER_DIR=\"${TARGET_BUILD_DIR}/${CONTENTS_FOLDER_PATH}/Library/LaunchServices\"\nPLIST_DIR=\"${TARGET_BUILD_DIR}/${CONTENTS_FOLDER_PATH}/Library/LaunchDaemons\"\nmkdir -p \"${HELPER_DIR}\" \"${PLIST_DIR}\"\nditto \"${BUILT_PRODUCTS_DIR}/macfan-helper\" \"${HELPER_DIR}/macfan-helper\"\nditto \"${SRCROOT}/Config/com.evolte.MacFan.helper.plist\" \"${PLIST_DIR}/com.evolte.MacFan.helper.plist\"\nif [[ \"${CODE_SIGNING_ALLOWED:-YES}\" == \"YES\" ]]; then\n  SIGNING_IDENTITY=\"${EXPANDED_CODE_SIGN_IDENTITY:--}\"\n  codesign --force --sign \"${SIGNING_IDENTITY}\" --options runtime \"${HELPER_DIR}/macfan-helper\"\nfi\n";
 		};
 		6A264E251148066172C4519B /* Copy Swift Objective-C Interface Header */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -456,7 +456,6 @@
 					"-ObjC",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.evolte.MacFan.helper;
-				PRODUCT_NAME = "macfan-helper";
 				SDKROOT = macosx;
 			};
 			name = Release;
@@ -489,7 +488,6 @@
 					"-ObjC",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.evolte.MacFan.helper;
-				PRODUCT_NAME = "macfan-helper";
 				SDKROOT = macosx;
 			};
 			name = Debug;

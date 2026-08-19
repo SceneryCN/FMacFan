@@ -14,10 +14,12 @@ jobs:
     name: Build Apple Silicon DMG
     runs-on: macos-15
     timeout-minutes: 20
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
     steps:
       - name: Check out repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Select release version
         shell: bash
@@ -32,14 +34,28 @@ jobs:
       - name: Build release application
         shell: bash
         run: |
+          set -o pipefail
           xcodebuild \
             -project MacFan.xcodeproj \
             -scheme MacFan \
             -configuration Release \
+            -destination "platform=macOS,arch=arm64" \
             -derivedDataPath build \
+            -resultBundlePath MacFan.xcresult \
             CODE_SIGNING_ALLOWED=NO \
             ENABLE_USER_SCRIPT_SANDBOXING=NO \
-            clean build
+            clean build \
+            | tee xcodebuild.log
+
+      - name: Upload build diagnostics
+        if: failure()
+        uses: actions/upload-artifact@v7
+        with:
+          name: MacFan-build-diagnostics
+          path: |
+            xcodebuild.log
+            MacFan.xcresult
+          if-no-files-found: warn
 
       - name: Apply ad-hoc signature
         shell: bash
@@ -67,7 +83,7 @@ jobs:
             "${VERSION}"
 
       - name: Upload DMG artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: MacFan-${{ env.VERSION }}-arm64
           path: dist/*
@@ -75,7 +91,7 @@ jobs:
 
       - name: Publish GitHub release
         if: github.ref_type == 'tag'
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         with:
           files: dist/*
           generate_release_notes: true

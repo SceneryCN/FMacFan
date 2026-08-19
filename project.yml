@@ -51,12 +51,12 @@ targets:
   MacFanHelper:
     type: tool
     platform: macOS
+    productName: macfan-helper
     sources:
       - path: Sources/MacFanHelper
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.evolte.MacFan.helper
-        PRODUCT_NAME: macfan-helper
     dependencies:
       - target: MacFanCore
       - sdk: Security.framework
@@ -97,8 +97,10 @@ targets:
           mkdir -p "${HELPER_DIR}" "${PLIST_DIR}"
           ditto "${BUILT_PRODUCTS_DIR}/macfan-helper" "${HELPER_DIR}/macfan-helper"
           ditto "${SRCROOT}/Config/com.evolte.MacFan.helper.plist" "${PLIST_DIR}/com.evolte.MacFan.helper.plist"
-          SIGNING_IDENTITY="${EXPANDED_CODE_SIGN_IDENTITY:--}"
-          codesign --force --sign "${SIGNING_IDENTITY}" --options runtime "${HELPER_DIR}/macfan-helper"
+          if [[ "${CODE_SIGNING_ALLOWED:-YES}" == "YES" ]]; then
+            SIGNING_IDENTITY="${EXPANDED_CODE_SIGN_IDENTITY:--}"
+            codesign --force --sign "${SIGNING_IDENTITY}" --options runtime "${HELPER_DIR}/macfan-helper"
+          fi
         outputFiles:
           - "$(TARGET_BUILD_DIR)/$(CONTENTS_FOLDER_PATH)/Library/LaunchServices/macfan-helper"
           - "$(TARGET_BUILD_DIR)/$(CONTENTS_FOLDER_PATH)/Library/LaunchDaemons/com.evolte.MacFan.helper.plist"
