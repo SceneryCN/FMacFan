@@ -25,7 +25,11 @@ final class AppModel: ObservableObject {
     private let service: ThermalServiceClient
     private var refreshTask: Task<Void, Never>?
 
-    init(service: ThermalServiceClient = ThermalServiceClient()) {
+    convenience init() {
+        self.init(service: ThermalServiceClient())
+    }
+
+    init(service: ThermalServiceClient) {
         self.service = service
         launchAtLoginEnabled = SMAppService.mainApp.status == .enabled
     }

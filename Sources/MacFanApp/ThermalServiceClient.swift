@@ -7,6 +7,7 @@ enum ThermalServiceClientError: Error {
     case emptySnapshot
 }
 
+@MainActor
 final class ThermalServiceClient {
     private let encoder: JSONEncoder = JSONEncoder()
     private let decoder: JSONDecoder = JSONDecoder()
