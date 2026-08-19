@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.evolte.MacFan.helper</string>
+    <key>BundleProgram</key>
+    <string>Contents/Library/LaunchServices/macfan-helper</string>
+    <key>MachServices</key>
+    <dict>
+        <key>com.evolte.MacFan.helper</key>
+        <true/>
+    </dict>
+    <key>AssociatedBundleIdentifiers</key>
+    <array>
+        <string>com.evolte.MacFan</string>
+    </array>
+    <key>ProcessType</key>
+    <string>Background</string>
+    <key>ThrottleInterval</key>
+    <integer>2</integer>
+</dict>
+</plist>

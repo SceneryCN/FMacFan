@@ -1,0 +1,114 @@
+name: MacFan
+options:
+  bundleIdPrefix: com.evolte
+  deploymentTarget:
+    macOS: "13.0"
+  createIntermediateGroups: true
+  generateEmptyDirectories: false
+
+settings:
+  base:
+    ARCHS: arm64
+    DEAD_CODE_STRIPPING: YES
+    ENABLE_HARDENED_RUNTIME: YES
+    MACOSX_DEPLOYMENT_TARGET: "13.0"
+    SWIFT_STRICT_CONCURRENCY: complete
+    SWIFT_VERSION: "6.0"
+  configs:
+    Debug:
+      SWIFT_OPTIMIZATION_LEVEL: "-Onone"
+    Release:
+      GCC_OPTIMIZATION_LEVEL: s
+      SWIFT_COMPILATION_MODE: wholemodule
+      SWIFT_OPTIMIZATION_LEVEL: "-Osize"
+
+targets:
+  CSMC:
+    type: library.static
+    platform: macOS
+    sources:
+      - path: Sources/CSMC
+    settings:
+      base:
+        PRODUCT_NAME: CSMC
+        SKIP_INSTALL: YES
+    dependencies:
+      - sdk: CoreFoundation.framework
+      - sdk: IOKit.framework
+
+  MacFanCore:
+    type: library.static
+    platform: macOS
+    sources:
+      - path: Sources/MacFanCore
+    settings:
+      base:
+        DEFINES_MODULE: YES
+        SKIP_INSTALL: YES
+    dependencies:
+      - target: CSMC
+
+  MacFanHelper:
+    type: tool
+    platform: macOS
+    sources:
+      - path: Sources/MacFanHelper
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.evolte.MacFan.helper
+        PRODUCT_NAME: macfan-helper
+    dependencies:
+      - target: MacFanCore
+      - sdk: Security.framework
+
+  MacFan:
+    type: application
+    platform: macOS
+    sources:
+      - path: Sources/MacFanApp
+        excludes:
+          - Resources
+    resources:
+      - path: Sources/MacFanApp/Resources
+    info:
+      path: Config/App-Info.plist
+      properties:
+        CFBundleDisplayName: MacFan
+        CFBundleShortVersionString: 0.1.0
+        CFBundleVersion: 1
+        LSMinimumSystemVersion: "$(MACOSX_DEPLOYMENT_TARGET)"
+        LSUIElement: true
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.evolte.MacFan
+        PRODUCT_NAME: MacFan
+    dependencies:
+      - target: MacFanCore
+      - target: MacFanHelper
+        embed: false
+      - sdk: ServiceManagement.framework
+    postBuildScripts:
+      - name: Embed privileged helper
+        basedOnDependencyAnalysis: false
+        script: |
+          set -eu
+          HELPER_DIR="${TARGET_BUILD_DIR}/${CONTENTS_FOLDER_PATH}/Library/LaunchServices"
+          PLIST_DIR="${TARGET_BUILD_DIR}/${CONTENTS_FOLDER_PATH}/Library/LaunchDaemons"
+          mkdir -p "${HELPER_DIR}" "${PLIST_DIR}"
+          ditto "${BUILT_PRODUCTS_DIR}/macfan-helper" "${HELPER_DIR}/macfan-helper"
+          ditto "${SRCROOT}/Config/com.evolte.MacFan.helper.plist" "${PLIST_DIR}/com.evolte.MacFan.helper.plist"
+          SIGNING_IDENTITY="${EXPANDED_CODE_SIGN_IDENTITY:--}"
+          codesign --force --sign "${SIGNING_IDENTITY}" --options runtime "${HELPER_DIR}/macfan-helper"
+        outputFiles:
+          - "$(TARGET_BUILD_DIR)/$(CONTENTS_FOLDER_PATH)/Library/LaunchServices/macfan-helper"
+          - "$(TARGET_BUILD_DIR)/$(CONTENTS_FOLDER_PATH)/Library/LaunchDaemons/com.evolte.MacFan.helper.plist"
+
+schemes:
+  MacFan:
+    build:
+      targets:
+        MacFan: all
+    run:
+      config: Debug
+    archive:
+      config: Release

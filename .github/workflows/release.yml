@@ -1,0 +1,81 @@
+name: Build DMG
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    name: Build Apple Silicon DMG
+    runs-on: macos-15
+    timeout-minutes: 20
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Select release version
+        shell: bash
+        run: |
+          if [[ "${GITHUB_REF_TYPE}" == "tag" ]]; then
+            VERSION="${GITHUB_REF_NAME#v}"
+          else
+            VERSION="0.1.${GITHUB_RUN_NUMBER}"
+          fi
+          echo "VERSION=${VERSION}" >> "${GITHUB_ENV}"
+
+      - name: Build release application
+        shell: bash
+        run: |
+          xcodebuild \
+            -project MacFan.xcodeproj \
+            -scheme MacFan \
+            -configuration Release \
+            -derivedDataPath build \
+            CODE_SIGNING_ALLOWED=NO \
+            ENABLE_USER_SCRIPT_SANDBOXING=NO \
+            clean build
+
+      - name: Apply ad-hoc signature
+        shell: bash
+        run: |
+          codesign \
+            --force \
+            --deep \
+            --sign - \
+            --options runtime \
+            --identifier com.evolte.MacFan \
+            "build/Build/Products/Release/MacFan.app"
+          codesign \
+            --verify \
+            --deep \
+            --strict \
+            "build/Build/Products/Release/MacFan.app"
+
+      - name: Create DMG
+        shell: bash
+        run: |
+          chmod +x Scripts/create-dmg.sh
+          Scripts/create-dmg.sh \
+            "build/Build/Products/Release/MacFan.app" \
+            "dist" \
+            "${VERSION}"
+
+      - name: Upload DMG artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: MacFan-${{ env.VERSION }}-arm64
+          path: dist/*
+          if-no-files-found: error
+
+      - name: Publish GitHub release
+        if: github.ref_type == 'tag'
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/*
+          generate_release_notes: true
